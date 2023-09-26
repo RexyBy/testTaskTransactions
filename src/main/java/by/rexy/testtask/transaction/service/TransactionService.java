@@ -80,6 +80,7 @@ public class TransactionService implements TransactionGateway {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<TransactionDto> searchTransaction(String filters) {
         Specification<Transaction> specification = filtersToTransactionSpecificationConverter.convert(filters);
         List<Transaction> transactions = transactionRepository.findAll(specification);
